@@ -21,8 +21,6 @@ const ComingSoon: React.FC = () => {
         <div className="logo-container">
           <img className="logo" src="https://i.ibb.co/CMntvN5/Careero-Logo-HD-trans-white.png" alt="Logo" />
           <div className="logo-text">
-            <h1>Coming Soon!</h1>
-            <p>Stay tuned for our exciting launch.</p>
           </div>
           <div className="countdown-timer">
             <h2>Countdown Timer</h2>
