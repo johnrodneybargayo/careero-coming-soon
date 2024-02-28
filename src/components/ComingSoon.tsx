@@ -1,7 +1,12 @@
 import React from 'react';
+import Countdown from 'react-countdown';
 import './ComingSoon.scss';
 
 const ComingSoon: React.FC = () => {
+  // Calculate the target date which is 4 months from now
+  const targetDate = new Date();
+  targetDate.setMonth(targetDate.getMonth() + 6);
+
   return (
     <div className="container">
       <div className="video-background">
@@ -18,6 +23,10 @@ const ComingSoon: React.FC = () => {
           <div className="logo-text">
             <h1>Coming Soon!</h1>
             <p>Stay tuned for our exciting launch.</p>
+          </div>
+          <div className="countdown-timer">
+            <h2>Countdown Timer</h2>
+            <Countdown date={targetDate} />
           </div>
         </div>
       </div>
