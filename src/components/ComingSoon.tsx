@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 import Countdown from 'react-countdown';
 import './ComingSoon.scss';
 
 const ComingSoon: React.FC = () => {
-  // Calculate the target date which is 4 months from now
-  const targetDate = new Date();
-  targetDate.setMonth(targetDate.getMonth() + 6);
+  // Initialize the start date memoized so it doesn't change on every render
+  const startDate = useMemo(() => new Date('2024-03-01'), []);
+
+  // Calculate the end date which is 6 months from the start date
+  const endDate = new Date(startDate);
+  endDate.setMonth(endDate.getMonth() + 6);
+
+  // Retrieve target date from local storage or set it to the start date
+  const storedTargetDate = localStorage.getItem('targetDate');
+  const initialTargetDate = useMemo(() => {
+    return storedTargetDate ? new Date(storedTargetDate) : startDate;
+  }, [storedTargetDate, startDate]);
+
+  useEffect(() => {
+    // Store the target date in local storage
+    localStorage.setItem('targetDate', initialTargetDate.toISOString());
+  }, [initialTargetDate]);
 
   return (
     <div className="container">
@@ -23,8 +37,7 @@ const ComingSoon: React.FC = () => {
           <div className="logo-text">
           </div>
           <div className="countdown-timer">
-            {/* <h2>Countdown Timer</h2> */}
-            <Countdown date={targetDate} />
+            <Countdown date={initialTargetDate} />
           </div>
         </div>
       </div>
